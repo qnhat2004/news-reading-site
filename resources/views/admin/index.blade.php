@@ -13,7 +13,7 @@
                     <th>Content</th>
                     <th>Image</th>
                     <th>Category</th>
-                    <th>Published Date</th>
+                    <th>Published Time</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -23,8 +23,9 @@
                     <td>{{ $article->id }}</td>
                     <td>{{ $article->title }}</td>
                     <td>{{ $article->content }}</td>
-                    <td>{{ $article->category->name ?? 'N/A' }}</td>
-                    <td>{{ $article->published_at }}</td>
+                    <td><img src="{{ $article->image }}" alt="Article Image" style="max-width: 100px;"></td>
+                    <td>{{ $article->category->name }}</td>
+                    <td>{{ $article->created_at }}</td>
                     <td>
                         <a href="{{ route('admin.edit', $article->id) }}" class="btn btn-primary btn-sm">Edit</a>
                         <form action="{{ route('admin.destroy', $article->id) }}" method="POST" class="d-inline">
@@ -37,6 +38,8 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $news->links() }}
+        <div class="d-flex justify-content-end">
+            {{ $news->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 @endsection
