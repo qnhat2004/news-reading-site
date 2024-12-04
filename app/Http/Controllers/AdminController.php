@@ -19,8 +19,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        // 
-        
+        $news = News::with('category');
+        return view('admin.create', compact('news'));
     }
 
     /**
@@ -28,6 +28,21 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'required|string|max:255',
+        ]);
+
+        News::create([
+            'title'=> $request->title,
+            'content'=> $request->content,
+            'image'=> $request->image,
+            'category_id'=> $request->category_id,
+            // 'created_at'=> now(),
+        ]);
+        return redirect()->route('admin.index')
+            ->with('success','New article created successfully.');
     }
 
     /**
