@@ -15,3 +15,5 @@ Route::get('news/{id}', [HomeController::class, 'show'])->name('news.detail');
 Route::get('/manage', [AdminController::class, 'index'])->name('manage');
 
 Route::resource('admin', AdminController::class)    ;
+
+Route::delete('/admin/{id}', [AdminController::class, 'destroy']);

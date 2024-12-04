@@ -87,8 +87,12 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news)
+    public function destroy($id)
     {
         //
+        $article = News::findOrFail($id);
+        $article->delete();
+        return redirect()->route('admin.index')
+            ->with('success', 'Article deleted successfully.');
     }
 }
