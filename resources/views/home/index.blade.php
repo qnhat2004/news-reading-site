@@ -2,10 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form class="form-inline mb-4" method="GET" action="{{ url('/home') }}">
-        <input class="form-control mr-2" type="search" name="search" placeholder="Tìm kiếm tin tức" value="{{ request('search') }}">
-        <button class="btn btn-success" type="submit">Tìm kiếm</button>
-    </form>
+    
 
     <div class="row">
         <h1 class="mb-4">Tin Tức Mới Nhất</h1>

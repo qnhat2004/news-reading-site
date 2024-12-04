@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -49,6 +49,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <form class="form-inline mb-4 mr-2" method="GET" action="{{ url('/home') }}">
+                            <input class="form-control mr-2" type="search" name="search" placeholder="Tìm kiếm tin tức" value="{{ request('search') }}">
+                            <button class="btn btn-success" type="submit">Tìm kiếm</button>
+                        </form>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
