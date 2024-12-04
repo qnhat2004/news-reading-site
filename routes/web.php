@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -10,5 +11,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('news/{id}', [HomeController::class, 'show'])->name('news.detail');
+
+Route::get('/manage', [AdminController::class, 'index'])->name('manage');
 
 
