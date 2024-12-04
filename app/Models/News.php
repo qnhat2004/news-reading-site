@@ -10,7 +10,7 @@ class News extends Model
     //
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $table = "news";
     protected $fillable = ["id","title", "content", "image", "category_id", "created_at", "deleted_at"];

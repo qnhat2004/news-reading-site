@@ -39,7 +39,7 @@ class AdminController extends Controller
             'content'=> $request->content,
             'image'=> $request->image,
             'category_id'=> $request->category_id,
-            // 'created_at'=> now(),
+            'created_at'=> now(),
         ]);
         return redirect()->route('admin.index')
             ->with('success','New article created successfully.');
@@ -58,13 +58,30 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
+        $article = News::with('category')->findOrFail($id);
+        return view('admin.update', compact('article'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, News $article)
     {
+        $this->validate($request, [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'required|string|max:255',
+        ]);
+
+        $article->update([
+            'title'=> $request->title,
+            'content'=> $request->content,
+            'image'=> $request->image,
+            'category_id'=> $request->category_id,
+            // 'created_at'=> now(),    
+        ]);
+        return redirect()->route('admin.index')
+            ->with('success', 'Article updated successfully.');
     }
 
     /**
