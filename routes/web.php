@@ -9,6 +9,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // xác thực người dùng ngay khi họ truy cập vào trang web
 Auth::routes();
 
-
+Route::get('news/{id}', [HomeController::class, 'show'])->name('news.detail');
 
 
